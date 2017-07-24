@@ -1,0 +1,17 @@
+{
+  "name": "account-info-api-mock",
+  "version": "0.0.1",
+  "description": "=Install",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.15.3",
+    "morgan": "1.8.2",
+    "swagger-express-middleware": "1.0.0-alpha.12"
+  }
+}
