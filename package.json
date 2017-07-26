@@ -4,7 +4,7 @@
   "description": "=Install",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
@@ -13,5 +13,9 @@
     "express": "4.15.3",
     "morgan": "1.8.2",
     "swagger-express-middleware": "1.0.0-alpha.12"
+  },
+  "devDependencies": {
+    "mkdirp": "0.5.1",
+    "mocha": "3.4.2"
   }
 }
