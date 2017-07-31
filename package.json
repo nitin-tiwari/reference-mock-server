@@ -1,0 +1,21 @@
+{
+  "name": "account-info-api-mock",
+  "version": "0.0.1",
+  "description": "=Install",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.15.3",
+    "morgan": "1.8.2",
+    "swagger-express-middleware": "1.0.0-alpha.12"
+  },
+  "devDependencies": {
+    "mkdirp": "0.5.1",
+    "mocha": "3.4.2"
+  }
+}

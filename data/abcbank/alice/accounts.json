@@ -1,0 +1,23 @@
+{
+  "Data": [{
+    "AccountId": "22289",
+    "Currency": "GBP",
+    "Nickname": "bills",
+    "Account": {
+      "SchemeName": "BBAN",
+      "Identification": "10203345",
+      "Name": "Ms Liddell",
+      "SecondaryIdentification": "341267"
+    },
+    "Servicer": {
+      "SchemeName": "UKSortCode",
+      "Identification": "SC802001"
+    }
+  }],
+  "Links": {
+    "Self": "/accounts"
+  },
+  "Meta": {
+    "TotalPages": 1
+  }
+}
