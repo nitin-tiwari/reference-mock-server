@@ -1,4 +1,3 @@
-'use strict'
 const assert = require('assert');
 const dataSource = require('../lib/datasource.js');
 const fs = require('fs');
@@ -9,15 +8,15 @@ describe('dataSource when data exists', () => {
   const financialId = 'test-financial-id';
   const path = 'accounts/123/transactions';
   const transactions = {
-    some: 'transactions'
+    some: 'transactions',
   };
 
   const request = {
     path: `/open-banking/${path}`,
     headers: {
       'authorization': authorization,
-      'x-fapi-financial-id': financialId
-    }
+      'x-fapi-financial-id': financialId,
+    },
   };
 
   beforeEach(() => {
@@ -35,13 +34,12 @@ describe('dataSource when data exists', () => {
     fs.rmdirSync(`./data/${financialId}`);
   });
 
-  it('returns data based on request headers and path', done => {
+  it('returns data based on request headers and path', (done) => {
     dataSource.initResources(() => {
-      dataSource.mockData(request, data => {
+      dataSource.mockData(request, (data) => {
         assert(data, transactions);
         done();
       });
     });
   });
-
 });
