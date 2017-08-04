@@ -35,3 +35,4 @@ jobs:
 
       # run tests!
       - run: yarn --use-strict test
+      - run: yarn eslint .
