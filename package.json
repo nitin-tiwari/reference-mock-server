@@ -11,11 +11,14 @@
   "license": "ISC",
   "dependencies": {
     "express": "4.15.3",
+    "mkdirp": "0.5.1",
     "morgan": "1.8.2",
     "swagger-express-middleware": "1.0.0-alpha.12"
   },
   "devDependencies": {
-    "mkdirp": "0.5.1",
+    "eslint": "^4.3.0",
+    "eslint-config-airbnb-base": "^11.3.1",
+    "eslint-plugin-import": "^2.7.0",
     "mocha": "3.4.2"
   }
 }
