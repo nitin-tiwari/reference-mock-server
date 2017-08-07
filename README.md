@@ -73,3 +73,40 @@ http --json http://localhost:8001/open-banking/accounts/124 \
      x-fapi-financial-id:abcbank \
      Authorization:alice
 ```
+
+## Deploy to heroku
+
+To deploy to heroku for the first time:
+
+```sh
+brew install heroku
+
+heroku login
+
+heroku create --region eu
+
+heroku apps:rename <newname>
+
+heroku config:set DEBUG=error,log
+
+heroku config:set SWAGGER=swagger-uri
+
+git push heroku master
+```
+
+To test:
+
+```sh
+curl -H "x-fapi-financial-id: abcbank" \
+     -H "Authorization: alice" \
+     -H "Accept: application/json" \
+     https://<newname>.herokuapp.com/open-banking/accounts
+
+# {"Data":[{"AccountId":"22289","Currency"...
+
+# Or if using [httpie](https://httpie.org/), e.g. brew install httpie
+http --json https://<newname>.herokuapp.com/open-banking/accounts \
+     x-fapi-financial-id:abcbank \
+     Authorization:alice
+
+```
