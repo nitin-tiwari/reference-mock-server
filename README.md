@@ -9,12 +9,11 @@ Read/Write API mock server implemented using
 
 Mock server reads swagger file to generate endpoints.
 
+The path or URI to the swagger file can optionally be passed to
+the mock server on startup using an environment variable `SWAGGER`.
 
-The path to the swagger file can optionally be passed to the mock server on
- startup using an environment variable `SWAGGER`
-
-
-Alternatively if no local file is stored the Server currently assumes the
+Alternatively if `SWAGGER` env var is not set the Server currently
+assumes the
 [account-info-api-spec](https://github.com/OpenBankingUK/account-info-api-spec)
 repo is in the parent directory. This can be added like so:
 
