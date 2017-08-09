@@ -2,7 +2,10 @@
   "name": "account-info-api-mock",
   "version": "0.0.1",
   "description": "=Install",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "engines": {
+    "node": "8.2.1"
+  },
   "scripts": {
     "test": "mocha"
   },
@@ -11,10 +14,10 @@
   "license": "ISC",
   "dependencies": {
     "debug": "^2.6.8",
-    "express": "4.15.3",
-    "mkdirp": "0.5.1",
-    "morgan": "1.8.2",
-    "swagger-express-middleware": "1.0.0-alpha.12"
+    "express": "^4.15.3",
+    "mkdirp": "^0.5.1",
+    "morgan": "^1.8.2",
+    "swagger-express-middleware": "^1.0.0-alpha.12"
   },
   "devDependencies": {
     "eslint": "^4.3.0",
