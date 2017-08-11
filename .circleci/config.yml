@@ -36,3 +36,8 @@ jobs:
       # run tests!
       - run: yarn --use-strict test
       - run: yarn eslint .
+deployment:
+  production:
+    branch: master
+    heroku:
+      appname: readwrite-api-mock-server
