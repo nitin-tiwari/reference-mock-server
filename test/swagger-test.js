@@ -14,10 +14,11 @@ describe('fetchSwagger', () => {
     });
 
     it('does HTTP GET of URI', () => {
-      sinon.stub(https, 'get').returns({ on: () => {} });
+      const stub = sinon.stub(https, 'get').returns({ on: () => {} });
       swagger.fetchSwagger(() => {});
       const options = new URL(uri);
       assert(https.get.calledWithMatch(options));
+      stub.restore();
     });
   });
 
@@ -28,9 +29,10 @@ describe('fetchSwagger', () => {
     });
 
     it('checks env is a file that exists', () => {
-      sinon.stub(fs, 'existsSync').returns(true);
+      const stub = sinon.stub(fs, 'existsSync').returns(true);
       swagger.fetchSwagger((result) => { assert(result, file); });
       assert(fs.existsSync.calledWithMatch(file));
+      stub.restore();
     });
   });
 });
