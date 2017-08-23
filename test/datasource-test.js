@@ -10,9 +10,10 @@ describe('dataSource when data exists', () => {
   const transactions = {
     some: 'transactions',
   };
+  const version = 'v1.2';
 
   const request = {
-    path: `/open-banking/${path}`,
+    path: `/open-banking/${version}/${path}`,
     headers: {
       'authorization': authorization,
       'x-fapi-financial-id': financialId,
@@ -20,6 +21,7 @@ describe('dataSource when data exists', () => {
   };
 
   beforeEach(() => {
+    process.env.VERSION = version;
     mkdirp.sync(`./data/${financialId}/${authorization}/accounts/123`);
     const file = `./data/${financialId}/${authorization}/${path}.json`;
     fs.writeFileSync(file, JSON.stringify(transactions));

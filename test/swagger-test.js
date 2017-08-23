@@ -1,8 +1,10 @@
+/* eslint import/no-extraneous-dependencies: off */
 const assert = require('assert');
 const sinon = require('sinon');
 const swagger = require('../lib/swagger.js');
 const https = require('https');
 const fs = require('fs');
+const { URL } = require('url');
 
 describe('fetchSwagger', () => {
   describe('when SWAGGER env contains URI', () => {
@@ -12,9 +14,11 @@ describe('fetchSwagger', () => {
     });
 
     it('does HTTP GET of URI', () => {
-      sinon.stub(https, 'get').returns({ on: () => {} });
+      const stub = sinon.stub(https, 'get').returns({ on: () => {} });
       swagger.fetchSwagger(() => {});
-      assert(https.get.calledWithMatch(uri));
+      const options = new URL(uri);
+      assert(https.get.calledWithMatch(options));
+      stub.restore();
     });
   });
 
@@ -25,9 +29,10 @@ describe('fetchSwagger', () => {
     });
 
     it('checks env is a file that exists', () => {
-      sinon.stub(fs, 'existsSync').returns(true);
+      const stub = sinon.stub(fs, 'existsSync').returns(true);
       swagger.fetchSwagger((result) => { assert(result, file); });
       assert(fs.existsSync.calledWithMatch(file));
+      stub.restore();
     });
   });
 });

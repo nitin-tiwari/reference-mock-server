@@ -28,9 +28,12 @@ Install npm packages and run server as follows:
 
 ```sh
 npm install
-node lib/index.js
+DEBUG=error,log VERSION=v1.1 node lib/index.js
 # running on localhost:8001 ...
 ```
+
+Above example sets debug log levels using DEBUG env var, and sets API URI
+version number using VERSION env var.
 
 ## Mock data
 
@@ -90,6 +93,8 @@ heroku config:set DEBUG=error,log
 
 heroku config:set SWAGGER=swagger-uri
 
+heroku config:set VERSION=<version-for-api-uri>
+
 git push heroku master
 ```
 
@@ -99,12 +104,12 @@ To test:
 curl -H "x-fapi-financial-id: abcbank" \
      -H "Authorization: alice" \
      -H "Accept: application/json" \
-     https://<newname>.herokuapp.com/open-banking/accounts
+     https://<newname>.herokuapp.com/open-banking/v1.1/accounts
 
 # {"Data":[{"AccountId":"22289","Currency"...
 
 # Or if using [httpie](https://httpie.org/), e.g. brew install httpie
-http --json https://<newname>.herokuapp.com/open-banking/accounts \
+http --json https://<newname>.herokuapp.com/open-banking/v1.1/accounts \
      x-fapi-financial-id:abcbank \
      Authorization:alice
 

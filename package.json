@@ -7,7 +7,9 @@
     "node": "8.2.1"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "test:watch": "mocha --watch",
+    "test:debug": "node --inspect node_modules/mocha/bin/_mocha --watch --no-timeouts"
   },
   "keywords": [],
   "author": "",
