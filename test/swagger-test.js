@@ -6,33 +6,54 @@ const https = require('https');
 const fs = require('fs');
 const { URL } = require('url');
 
+const sandbox = sinon.createSandbox();
+
 describe('fetchSwagger', () => {
+  const uri = 'https://host/path';
+  const uriFallback = 'https://host/path_fallback';
+  const file = './path/swagger.yaml';
+
   describe('when SWAGGER env contains URI', () => {
-    const uri = 'https://host/path?token=123';
     before(() => {
+      sandbox.restore();
       process.env.SWAGGER = uri;
     });
 
     it('does HTTP GET of URI', () => {
-      const stub = sinon.stub(https, 'get').returns({ on: () => {} });
+      sandbox.stub(https, 'get').returns({ statusCode: 200, on: () => {} });
       swagger.fetchSwagger(() => {});
       const options = new URL(uri);
       assert(https.get.calledWithMatch(options));
-      stub.restore();
+    });
+  });
+
+  describe('when SWAGGER env contains URI that returns 404', () => {
+    before(() => {
+      sandbox.restore();
+      process.env.SWAGGER = uri;
+      process.env.SWAGGER_FALLBACK = uriFallback;
+    });
+
+    it('does HTTP GET of fallback URI', () => {
+      const options = new URL(uri);
+      const options2 = new URL(uriFallback);
+      const stub = sandbox.stub(https, 'get');
+      stub.withArgs(options).returns({ statusCode: 404 });
+      stub.withArgs(options2).returns({ statusCode: 200, on: () => {} });
+      swagger.fetchSwagger(() => {});
     });
   });
 
   describe('when SWAGGER env does not contain URI', () => {
-    const file = './path/swagger.yaml';
     before(() => {
+      sandbox.restore();
       process.env.SWAGGER = file;
     });
 
     it('checks env is a file that exists', () => {
-      const stub = sinon.stub(fs, 'existsSync').returns(true);
+      sandbox.stub(fs, 'existsSync').returns(true);
       swagger.fetchSwagger((result) => { assert(result, file); });
       assert(fs.existsSync.calledWithMatch(file));
-      stub.restore();
     });
   });
 });
