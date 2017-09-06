@@ -1,7 +1,7 @@
 # Read/Write API mock server
 
 Read/Write API mock server implemented using
-[Node.js](https://nodejs.org/) v8.2.1,
+[Node.js](https://nodejs.org/),
 [express](https://github.com/expressjs/express), and
 [swagger-express-middleware](https://github.com/BigstickCarpet/swagger-express-middleware).
 
@@ -78,7 +78,7 @@ http --json http://localhost:8001/open-banking/accounts/124 \
 
 ## Deploy to heroku
 
-To deploy to heroku for the first time:
+To deploy to heroku for the first time from a Mac:
 
 ```sh
 brew install heroku
