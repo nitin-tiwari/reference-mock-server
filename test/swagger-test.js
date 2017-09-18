@@ -48,10 +48,14 @@ describe('fetchSwagger', () => {
     before(() => {
       sandbox.restore();
       process.env.SWAGGER = file;
+      try {
+        sandbox.stub(fs, 'existsSync').returns(true);
+      } catch (e) {
+        // ignore, due to error raised when running npm run test:watch
+      }
     });
 
     it('checks env is a file that exists', () => {
-      sandbox.stub(fs, 'existsSync').returns(true);
       swagger.fetchSwagger((result) => { assert(result, file); });
       assert(fs.existsSync.calledWithMatch(file));
     });

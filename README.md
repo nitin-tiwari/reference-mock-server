@@ -30,12 +30,11 @@ Install npm packages:
 npm install
 ```
 
-To run using .env file, make a local .env, install foreman, and run using foreman:
+To run using .env file, make a local .env, and run using foreman:
 
 ```sh
 cp .env.sample .env
-npm install -g foreman
-nf start
+npm run foreman
 # [OKAY] Loaded ENV .env File as KEY=VALUE Format
 # web.1 | log running on localhost:8001 ...
 ```
@@ -68,12 +67,12 @@ GET requesting `/accounts` returns the JSON in that file.
 curl -H "x-fapi-financial-id: abcbank" \
      -H "Authorization: alice" \
      -H "Accept: application/json" \
-     http://localhost:8001/open-banking/accounts
+     http://localhost:8001/open-banking/v1.1/accounts
 
 # {"Data":[{"AccountId":"22289","Currency"...
 
 # Or if using [httpie](https://httpie.org/), e.g. brew install httpie
-http --json http://localhost:8001/open-banking/accounts \
+http --json http://localhost:8001/open-banking/v1.1/accounts \
      x-fapi-financial-id:abcbank \
      Authorization:alice
 
@@ -86,12 +85,12 @@ For example, requesting an account number not on file:
 curl -H "Authorization: alice" \
      -H "Accept: application/json" \
      -H "x-fapi-financial-id: abcbank" \
-     http://localhost:8001/open-banking/accounts/124
+     http://localhost:8001/open-banking/v1.1/accounts/124
 
 # Not Found
 
 # Or if using [httpie](https://httpie.org/), e.g. brew install httpie
-http --json http://localhost:8001/open-banking/accounts/124 \
+http --json http://localhost:8001/open-banking/v1.1/accounts/124 \
      x-fapi-financial-id:abcbank \
      Authorization:alice
 ```
