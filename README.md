@@ -24,16 +24,36 @@ git clone git@github.com:OpenBankingUK/account-info-api-spec.git && \
 cd $dir
 ```
 
-Install npm packages and run server as follows:
+Install npm packages:
 
 ```sh
 npm install
-DEBUG=error,log VERSION=v1.1 node lib/index.js
+```
+
+To run using .env file, make a local .env, install foreman, and run using foreman:
+
+```sh
+cp .env.sample .env
+npm install -g foreman
+nf start
+# [OKAY] Loaded ENV .env File as KEY=VALUE Format
+# web.1 | log running on localhost:8001 ...
+```
+
+Or to set environment variables on the command line:
+
+```sh
+DEBUG=error,log \
+  VERSION=v1.1 \
+  SWAGGER=../account-info-api-spec/dist/account-info-swagger.yaml \
+  PORT=8001 \
+  npm start
 # running on localhost:8001 ...
 ```
 
-Above example sets debug log levels using DEBUG env var, and sets API URI
-version number using VERSION env var.
+Set debug log levels using `DEBUG` env var.
+Set API URI version number using `VERSION` env var.
+Set API specification file using `SWAGGER` env var.
 
 ## Mock data
 
