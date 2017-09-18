@@ -8,6 +8,7 @@
   },
   "scripts": {
     "start": "node index.js",
+    "eslint": "node ./node_modules/eslint/bin/eslint.js .",
     "test": "mocha",
     "test:watch": "mocha --watch",
     "test:debug": "node --inspect node_modules/mocha/bin/_mocha --watch --no-timeouts"
