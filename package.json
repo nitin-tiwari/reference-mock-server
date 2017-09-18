@@ -7,6 +7,7 @@
     "node": "8.4.0"
   },
   "scripts": {
+    "foreman": "./node_modules/foreman/nf.js start",
     "start": "node index.js",
     "eslint": "node ./node_modules/eslint/bin/eslint.js .",
     "test": "mocha",
