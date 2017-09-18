@@ -30,12 +30,11 @@ Install npm packages:
 npm install
 ```
 
-To run using .env file, make a local .env, install foreman, and run using foreman:
+To run using .env file, make a local .env, and run using foreman:
 
 ```sh
 cp .env.sample .env
-npm install -g foreman
-nf start
+npm run foreman
 # [OKAY] Loaded ENV .env File as KEY=VALUE Format
 # web.1 | log running on localhost:8001 ...
 ```
