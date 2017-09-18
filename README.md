@@ -68,12 +68,12 @@ GET requesting `/accounts` returns the JSON in that file.
 curl -H "x-fapi-financial-id: abcbank" \
      -H "Authorization: alice" \
      -H "Accept: application/json" \
-     http://localhost:8001/open-banking/accounts
+     http://localhost:8001/open-banking/v1.1/accounts
 
 # {"Data":[{"AccountId":"22289","Currency"...
 
 # Or if using [httpie](https://httpie.org/), e.g. brew install httpie
-http --json http://localhost:8001/open-banking/accounts \
+http --json http://localhost:8001/open-banking/v1.1/accounts \
      x-fapi-financial-id:abcbank \
      Authorization:alice
 
@@ -86,12 +86,12 @@ For example, requesting an account number not on file:
 curl -H "Authorization: alice" \
      -H "Accept: application/json" \
      -H "x-fapi-financial-id: abcbank" \
-     http://localhost:8001/open-banking/accounts/124
+     http://localhost:8001/open-banking/v1.1/accounts/124
 
 # Not Found
 
 # Or if using [httpie](https://httpie.org/), e.g. brew install httpie
-http --json http://localhost:8001/open-banking/accounts/124 \
+http --json http://localhost:8001/open-banking/v1.1/accounts/124 \
      x-fapi-financial-id:abcbank \
      Authorization:alice
 ```
