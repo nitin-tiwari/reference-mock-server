@@ -3,6 +3,20 @@ const dataSource = require('../lib/datasource.js');
 const fs = require('fs');
 const mkdirp = require('mkdirp');
 
+describe('dataSource when non-json file in ./data', () => {
+  beforeEach(() => {
+    fs.writeFileSync('./data/.junk', 'bad data');
+  });
+
+  afterEach(() => {
+    fs.unlinkSync('./data/.junk');
+  });
+
+  it('ignores non JSON files', () => {
+    dataSource.initResources(() => {});
+  });
+});
+
 describe('dataSource when data exists', () => {
   const authorization = 'test-auth';
   const financialId = 'test-financial-id';
