@@ -10,7 +10,7 @@ describe('/scim/v2/OBAccountPaymentServiceProviders', () => {
       .end((err, res) => {
         assert.equal(res.status, 200);
         assert.equal(res.body.Resources.length, 3);
-        assert.equal(res.body.Resources[0].AuthorisationServers.CustomerFriendlyName, 'AAA Example Bank');
+        assert.equal(res.body.Resources[0].AuthorisationServers[0].CustomerFriendlyName, 'AAA Example Bank');
         assert.equal(res.body.Resources[0].id, 'aaa-example-bank');
         done();
       });
