@@ -3,7 +3,7 @@
     "Product": [{
       "AccountId": "22289",
       "ProductIdentifier": "CC",
-      "ProductType": "Current Account",
+      "ProductType": "PCA",
       "ProductName": "321"
     }]
   },
