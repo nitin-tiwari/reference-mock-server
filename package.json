@@ -1,7 +1,8 @@
 {
   "name": "account-info-api-mock",
-  "version": "0.0.1",
-  "description": "=Install",
+  "version": "0.1.0",
+  "description": "Read/Write API mock data server",
+  "author": "Open Banking Limited",
   "main": "lib/index.js",
   "engines": {
     "node": "8.4.0"
@@ -15,8 +16,7 @@
     "test:debug": "node --inspect node_modules/mocha/bin/_mocha --watch --no-timeouts"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "debug": "^3.1.0",
     "express": "^4.15.5",
