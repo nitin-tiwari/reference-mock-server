@@ -16,7 +16,6 @@
     "test:debug": "node --inspect node_modules/mocha/bin/_mocha --watch --no-timeouts"
   },
   "keywords": [],
-  "author": "",
   "license": "MIT",
   "dependencies": {
     "debug": "^3.1.0",
