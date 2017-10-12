@@ -2,23 +2,13 @@
   "Data": {
     "Account": [
       {
-        "AccountId": "22289",
-        "Currency": "GBP",
-        "Nickname": "bills",
-        "Account": {
-          "SchemeName": "SortCodeAccountNumber",
-          "Identification": "80200110203345",
-          "Name": "Ms Liddell",
-          "SecondaryIdentification": "341267"
-        }
-      },
-      {
         "AccountId": "22290",
         "Currency": "GBP",
         "Account": {
           "SchemeName": "SortCodeAccountNumber",
           "Identification": "30854645679085",
-          "Name": "Ms Liddell"
+          "Name": "Ms Liddell",
+          "SecondaryIdentification": "341267"
         }
       },
       {
@@ -35,7 +25,7 @@
         "Currency": "GBP",
         "Account": {
           "SchemeName": "SortCodeAccountNumber",
-          "Identification": "30854645678162",
+          "Identification": "30854645679421",
           "Name": "Ms Liddell"
         }
       }
