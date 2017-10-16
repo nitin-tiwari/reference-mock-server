@@ -2,16 +2,13 @@
 const assert = require('assert');
 const sinon = require('sinon');
 const swagger = require('../lib/swagger.js');
-const https = require('https');
 const fs = require('fs');
-const { URL } = require('url');
 
 const sandbox = sinon.createSandbox();
+const nock = require('nock');
 
 describe('fetchSwagger', () => {
-  const uri = 'https://host/path';
-  const uriFallback = 'https://host/path_fallback';
-  const file = './path/swagger.yaml';
+  const uri = 'https://example.com/path';
 
   describe('when SWAGGER env contains URI', () => {
     before(() => {
@@ -19,32 +16,21 @@ describe('fetchSwagger', () => {
       process.env.SWAGGER = uri;
     });
 
-    it('does HTTP GET of URI', () => {
-      sandbox.stub(https, 'get').returns({ statusCode: 200, on: () => {} });
-      swagger.fetchSwagger(() => {});
-      const options = new URL(uri);
-      assert(https.get.calledWithMatch(options));
-    });
-  });
+    nock(/example\.com/)
+      .get('/path')
+      .reply(200, {});
 
-  describe('when SWAGGER env contains URI that returns 404', () => {
-    before(() => {
-      sandbox.restore();
-      process.env.SWAGGER = uri;
-      process.env.SWAGGER_FALLBACK = uriFallback;
-    });
-
-    it('does HTTP GET of fallback URI', () => {
-      const options = new URL(uri);
-      const options2 = new URL(uriFallback);
-      const stub = sandbox.stub(https, 'get');
-      stub.withArgs(options).returns({ statusCode: 404 });
-      stub.withArgs(options2).returns({ statusCode: 200, on: () => {} });
-      swagger.fetchSwagger(() => {});
+    it('does HTTP GET of URI', (done) => {
+      swagger.fetchSwagger((file) => {
+        assert.equal(file, './swagger.json');
+        done();
+      });
     });
   });
 
   describe('when SWAGGER env does not contain URI', () => {
+    const file = './path/swagger.yaml';
+
     before(() => {
       sandbox.restore();
       process.env.SWAGGER = file;
