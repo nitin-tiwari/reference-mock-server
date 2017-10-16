@@ -9,20 +9,8 @@ Read/Write API mock server implemented using
 
 Mock server reads swagger file to generate endpoints.
 
-The path or URI to the swagger file can optionally be passed to
+The path or URI to the swagger file is passed to
 the mock server on startup using an environment variable `SWAGGER`.
-
-Alternatively if `SWAGGER` env var is not set the Server currently
-assumes the
-[account-info-api-spec](https://github.com/OpenBankingUK/account-info-api-spec)
-repo is in the parent directory. This can be added like so:
-
-```sh
-dir=`pwd` && \
-cd .. && \
-git clone git@github.com:OpenBankingUK/account-info-api-spec.git && \
-cd $dir
-```
 
 Install npm packages:
 
@@ -44,7 +32,7 @@ Or to set environment variables on the command line:
 ```sh
 DEBUG=error,log \
   VERSION=v1.1 \
-  SWAGGER=../account-info-api-spec/dist/account-info-swagger.yaml \
+  SWAGGER=https://www.openbanking.org.uk/wpcore/wp-content/uploads/2017/09/account-info-1-1-0-swagger.json \
   PORT=8001 \
   npm start
 # running on localhost:8001 ...
