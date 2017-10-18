@@ -11,8 +11,8 @@
     "foreman": "./node_modules/foreman/nf.js start",
     "start": "node index.js",
     "eslint": "node ./node_modules/eslint/bin/eslint.js .",
-    "test": "mocha",
-    "test:watch": "mocha --watch",
+    "test": "DEBUG=error mocha",
+    "test:watch": "DEBUG=error mocha --watch",
     "test:debug": "node --inspect node_modules/mocha/bin/_mocha --watch --no-timeouts"
   },
   "keywords": [],
@@ -24,7 +24,8 @@
     "mkdirp": "^0.5.1",
     "morgan": "^1.9.0",
     "nock": "^9.0.22",
-    "swagger-express-middleware": "^1.0.0-alpha.12"
+    "swagger-express-middleware": "^1.0.0-alpha.12",
+    "swagger-tools": "^0.10.3"
   },
   "devDependencies": {
     "eslint": "^4.7.2",

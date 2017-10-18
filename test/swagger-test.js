@@ -20,11 +20,9 @@ describe('fetchSwagger', () => {
       .get('/path')
       .reply(200, {});
 
-    it('does HTTP GET of URI', (done) => {
-      swagger.fetchSwagger((file) => {
-        assert.equal(file, './swagger.json');
-        done();
-      });
+    it('does HTTP GET of URI', async () => {
+      const file = await swagger.fetchSwagger();
+      assert.equal(file, './swagger.json');
     });
   });
 
@@ -41,8 +39,9 @@ describe('fetchSwagger', () => {
       }
     });
 
-    it('checks env is a file that exists', () => {
-      swagger.fetchSwagger((result) => { assert(result, file); });
+    it('checks env is a file that exists', async () => {
+      const result = await swagger.fetchSwagger();
+      assert(result, file);
       assert(fs.existsSync.calledWithMatch(file));
     });
   });
