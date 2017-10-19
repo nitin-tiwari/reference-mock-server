@@ -27,7 +27,7 @@ describe('fetchSwagger', () => {
   });
 
   describe('when SWAGGER env does not contain URI', () => {
-    const file = './path/swagger.yaml';
+    const file = './path/swagger.json';
 
     before(() => {
       sandbox.restore();
@@ -37,6 +37,10 @@ describe('fetchSwagger', () => {
       } catch (e) {
         // ignore, due to error raised when running npm run test:watch
       }
+    });
+
+    after(() => {
+      process.env.SWAGGER = null;
     });
 
     it('checks env is a file that exists', async () => {
