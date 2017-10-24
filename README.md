@@ -1,4 +1,4 @@
-# Read/Write API mock server
+# Reference mock server
 
 Read/Write API mock server implemented using
 [Node.js](https://nodejs.org/),
