@@ -1,6 +1,6 @@
 {
-  "name": "account-info-api-mock",
-  "version": "0.1.0",
+  "name": "reference-mock-server",
+  "version": "0.2.0",
   "description": "Read/Write API mock data server",
   "author": "Open Banking Limited",
   "main": "lib/index.js",
