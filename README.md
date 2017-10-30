@@ -1,9 +1,12 @@
-# Read/Write API mock server
+# Reference Mock Server
 
-Read/Write API mock server implemented using
+Reference mock server implemented using
 [Node.js](https://nodejs.org/),
 [express](https://github.com/expressjs/express), and
 [swagger-express-middleware](https://github.com/BigstickCarpet/swagger-express-middleware).
+
+For details on usage, see the readme for the
+[TPP Reference Server](https://github.com/OpenBankingUK/tpp-reference-server#readme).
 
 ## To run
 
