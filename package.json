@@ -11,6 +11,7 @@
     "foreman": "./node_modules/foreman/nf.js start",
     "start": "node index.js",
     "eslint": "node ./node_modules/eslint/bin/eslint.js .",
+    "checks": "npm run eslint && npm test ",
     "test": "DEBUG=error mocha",
     "test:watch": "DEBUG=error mocha --watch",
     "test:debug": "node --inspect node_modules/mocha/bin/_mocha --watch --no-timeouts"
@@ -18,6 +19,7 @@
   "keywords": [],
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "axios": "^0.16.2",
     "debug": "^3.1.0",
     "express": "^4.15.5",
@@ -25,7 +27,8 @@
     "morgan": "^1.9.0",
     "nock": "^9.0.22",
     "swagger-express-middleware": "^1.0.0-alpha.12",
-    "swagger-tools": "^0.10.3"
+    "swagger-tools": "^0.10.3",
+    "uuid": "^3.1.0"
   },
   "devDependencies": {
     "eslint": "^4.7.2",
