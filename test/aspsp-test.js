@@ -1,13 +1,29 @@
 const assert = require('assert');
 const request = require('supertest'); // eslint-disable-line
-const OPENID_CONFIG_ENDPOINT_URL = 'http://localhost/openid/config';
+const proxyquire = require('proxyquire');
+const env = require('env-var');
 
-process.env.OPENID_CONFIG_ENDPOINT_URL = OPENID_CONFIG_ENDPOINT_URL;
-const { app } = require('../lib/app.js');
+const openIdConfigUrl = 'http://localhost/openid/config';
 
 describe('/scim/v2/OBAccountPaymentServiceProviders', () => {
+  let apspsServer;
+  let server;
+
+  before(() => {
+    apspsServer = proxyquire('../lib/ob-directory.js', {
+      'env-var': env.mock({
+        OPENID_CONFIG_ENDPOINT_URL: openIdConfigUrl,
+      }),
+    });
+
+    server = proxyquire('../lib/app.js', {
+      './ob-directory.js': apspsServer,
+    });
+  });
+
+
   it('returns JSON payload', (done) => {
-    request(app)
+    request(server.app)
       .get('/scim/v2/OBAccountPaymentServiceProviders')
       .set('Accept', 'application/json')
       .end((err, res) => {
@@ -18,7 +34,7 @@ describe('/scim/v2/OBAccountPaymentServiceProviders', () => {
         assert.equal(authServer.CustomerFriendlyName, 'AAA Example Bank');
         assert.equal(authServer.BaseApiDNSUri, 'http://aaa-example-bank.example.com');
         assert.equal(authServer.CustomerFriendlyLogoUri, '');
-        assert.equal(authServer.OpenIDConfigEndPointUri, `${OPENID_CONFIG_ENDPOINT_URL}/${res.body.Resources[0].id}`);
+        assert.equal(authServer.OpenIDConfigEndPointUri, `${openIdConfigUrl}/${res.body.Resources[0].id}`);
         done();
       });
   });
