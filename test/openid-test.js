@@ -3,28 +3,33 @@ const request = require('supertest'); // eslint-disable-line
 const proxyquire = require('proxyquire');
 const env = require('env-var');
 
-describe('/openid/config/:id', () => {
-  let oid, app;
+const host = 'http://localhost';
 
-  before(function () {
+describe('/openid/config/:id', () => {
+  let oid;
+  let server;
+
+  before(() => {
     oid = proxyquire('../lib/open-id-config.js', {
       'env-var': env.mock({
-        OPENID_ASPSP_AUTH_HOST: 'http://localhost'
-      })
+        OPENID_ASPSP_AUTH_HOST: host,
+      }),
     });
 
-    app = proxyquire('../lib/app.js', { './open-id-config': oid }).app;
+    server = proxyquire('../lib/app.js', {
+      './open-id-config': oid,
+    });
   });
 
   it('returns JSON payload', (done) => {
-    request(app)
+    request(server.app)
       .get('/openid/config/aaa-example-bank')
       .set('Accept', 'application/json')
       .end((err, res) => {
         const oidConfig = res.body;
         assert.equal(res.status, 200);
-        assert.equal(oidConfig.authorization_endpoint, `http://localhost/authorize`);
-        assert.equal(oidConfig.token_endpoint, `http://localhost/token`);
+        assert.equal(oidConfig.authorization_endpoint, `${host}/authorize`);
+        assert.equal(oidConfig.token_endpoint, `${host}/token`);
         done();
       });
   });
