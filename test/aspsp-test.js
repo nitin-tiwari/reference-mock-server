@@ -1,6 +1,6 @@
 const assert = require('assert');
 const request = require('supertest'); // eslint-disable-line
-const OPENID_CONFIG_ENDPOINT_URL = 'http://localhost';
+const OPENID_CONFIG_ENDPOINT_URL = 'http://localhost/openid/config';
 
 process.env.OPENID_CONFIG_ENDPOINT_URL = OPENID_CONFIG_ENDPOINT_URL;
 const { app } = require('../lib/app.js');
